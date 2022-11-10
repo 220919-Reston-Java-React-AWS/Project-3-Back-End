@@ -1,0 +1,10 @@
+version: 0.2
+phases: 
+  build:
+    commands:
+      - cd social-media-spring-main
+      - mvn clean package
+artifacts:
+  files:
+    - social-media-spring-main/Dockerfile
+    - 
