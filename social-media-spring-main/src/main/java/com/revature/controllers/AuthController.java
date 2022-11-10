@@ -42,7 +42,7 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registers")
     public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) {
         User created = new User(0,
                 registerRequest.getEmail(),
