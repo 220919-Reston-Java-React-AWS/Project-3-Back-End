@@ -61,6 +61,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>P3-Back-End</finalName>
 	</build>
 
 </project>
