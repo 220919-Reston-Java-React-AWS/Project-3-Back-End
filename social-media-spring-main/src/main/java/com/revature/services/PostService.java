@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,15 @@ public class PostService {
 		return this.postRepository.save(post);
 	}
 
-	public void deletePost(Post post) {this.postRepository.delete(post);}
+	public Optional<Post> deletePost(Post post) {
+		Optional<Post> deletedPost = this.postRepository.findById(post.getId());
+
+		this.postRepository.delete(post);
+
+		return deletedPost;
+
+	}
+
 	public Post addOrRemoveLike(Post post, User user) {
 		List<User> likes = post.getLikes();
 		if (likes.contains(user)) {

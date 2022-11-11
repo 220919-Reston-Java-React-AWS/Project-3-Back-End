@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -44,6 +45,7 @@ public class PostController {
 
     @Authorized
     @DeleteMapping("/delete-post")
-    public void deletePost(@RequestBody Post post) {this.postService.deletePost(post);}
+    public Optional<Post> deletePost(@RequestBody Post post) {
+        return this.postService.deletePost(post);}
 
 }
