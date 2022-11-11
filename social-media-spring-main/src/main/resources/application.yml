@@ -3,7 +3,7 @@ server:
   servlet:
     session:
       cookie:
-        same-site: "Lax-allowing-unsafe"
+        same-site: Lax-allowing-unsafe
 
 spring:
   jpa:
