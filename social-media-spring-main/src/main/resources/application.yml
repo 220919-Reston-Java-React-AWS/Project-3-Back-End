@@ -3,8 +3,7 @@ server:
   servlet:
     session:
       cookie:
-        same-site: "none"
-        secure: false
+        same-site: "lax"
 
 spring:
   jpa:
