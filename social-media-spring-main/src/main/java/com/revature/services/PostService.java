@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Post;
+import com.revature.models.User;
 import com.revature.repositories.PostRepository;
 
 @Service
 public class PostService {
 
 	private PostRepository postRepository;
-	
+
 	public PostService(PostRepository postRepository) {
 		this.postRepository = postRepository;
 	}
@@ -24,5 +25,19 @@ public class PostService {
 		return this.postRepository.save(post);
 	}
 
+<<<<<<< HEAD
 	public void deletePost(Post post) {this.postRepository.delete(post);}
+=======
+	public Post addOrRemoveLike(Post post, User user) {
+		List<User> likes = post.getLikes();
+		if (likes.contains(user)) {
+			likes.remove(user);
+		} else {
+			likes.add(user);
+		}
+		post.setLikes(likes);
+		this.postRepository.save(post);
+		return post;
+	}
+>>>>>>> 078590b2ecd6aca583ade984450b9bb21176f914
 }
