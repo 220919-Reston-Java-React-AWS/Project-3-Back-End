@@ -5,7 +5,6 @@ server:
       cookie:
         HttpOnly: true
         same-site: "none"
-        secure: "true"
 
 spring:
   jpa:
