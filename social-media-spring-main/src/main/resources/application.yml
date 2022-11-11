@@ -3,7 +3,7 @@ server:
   servlet:
     session:
       cookie:
-        HttpOnly: true
+        same-site: none
 
 spring:
   jpa:
