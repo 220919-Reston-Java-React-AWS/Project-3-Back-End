@@ -1,10 +1,16 @@
 server:
+  ssl:
+    key-alias: project3-https
+    key-store: classpath:project3.jks.old
+    key-store-type: JKS
+    key-password: password
+    key-store-password: password
+  port: 8080
   servlet:
     session:
       cookie:
-        same-site: lax
+        same-site: none
         secure: true
-  port: 8080
 
 spring:
   jpa:
