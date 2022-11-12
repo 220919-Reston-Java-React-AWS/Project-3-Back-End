@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000"}, allowCredentials = "true")
 @RequestMapping("/auth")
 public class AuthController {
 

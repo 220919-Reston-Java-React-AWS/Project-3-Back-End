@@ -14,7 +14,6 @@ import com.revature.models.User;
 import com.revature.services.PostService;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000"}, allowCredentials = "true")
 @RequestMapping("/post")
 public class PostController {
 
