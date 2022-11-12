@@ -1,11 +1,5 @@
 server:
-  ssl:
-    key-alias: p3-https
-    key-store: classpath:p3.jks
-    key-store-type: JKS
-    key-password: password
   port: 8080
-  allowed-origins: "http://localhost:3000"
 
 spring:
   jpa:
