@@ -1,4 +1,8 @@
 server:
+  servlet:
+    session:
+      cookie:
+        same-site: lax
   port: 8080
 
 spring:
