@@ -69,18 +69,4 @@
 		<finalName>P3-Back-End</finalName>
 	</build>
 
-	<mvc:cors>
-
-	<mvc:mapping path="/api/**"
-		allowed-origins="http://localhost:8080"
-		allowed-methods="GET, PUT, PATCH, DELETE"
-		allowed-headers="header1, header2, header3"
-		exposed-headers="header1, header2" allow-credentials="false"
-		max-age="123" />
-
-	<mvc:mapping path="/**"
-		allowed-origins="http://localhost:8080" />
-
-</mvc:cors>
-
 </project>
