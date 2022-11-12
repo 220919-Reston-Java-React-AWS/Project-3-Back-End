@@ -1,11 +1,10 @@
 server:
+  ssl:
+    key-alias: p3-https
+    key-store: classpath:p3.jks
+    key-store-type: JKS
+    key-password: password
   port: 8080
-  ssl: false
-  servlet:
-    session:
-      cookie:
-        same-site: none
-        secure: true
 
 spring:
   jpa:
