@@ -23,7 +23,6 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         Optional<User> optional = authService.findByCredentials(loginRequest.getEmail(), loginRequest.getPassword());
 
@@ -37,7 +36,6 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public ResponseEntity<Void> logout(HttpSession session) {
         session.removeAttribute("user");
 
@@ -45,7 +43,6 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) {
         User created = new User(0,
                 registerRequest.getEmail(),

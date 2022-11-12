@@ -26,21 +26,18 @@ public class PostController {
 
     @Authorized
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public ResponseEntity<List<Post>> getAllPosts() {
         return ResponseEntity.ok(this.postService.getAll());
     }
 
     @Authorized
     @PutMapping
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public ResponseEntity<Post> upsertPost(@RequestBody Post post) {
         return ResponseEntity.ok(this.postService.upsert(post));
     }
 
     @Authorized
     @PutMapping("/like")
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public ResponseEntity<Post> addOrRemoveLike(@RequestBody Post post, HttpSession session) {
         User user = (User) session.getAttribute("user");
         return ResponseEntity.ok(this.postService.addOrRemoveLike(post, user));
@@ -48,7 +45,6 @@ public class PostController {
 
     @Authorized
     @DeleteMapping("/delete-post")
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public Optional<Post> deletePost(@RequestBody Post post) {
         return this.postService.deletePost(post);}
 
