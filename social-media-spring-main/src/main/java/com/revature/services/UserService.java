@@ -28,10 +28,12 @@ public class UserService {
         return userRepository.findById(user_id);
     }
 
-    // public User updateProfileInfo(User user, UpdateProfile info, int user_id) {
-    //    user.setUsername(info.getUsername());
-    //    user.setPic(info.getImg());
-    //    user.setAbout(info.getAbout());
+    public User updateProfileInfo(User user, UpdateProfile info) {
+       user.setUsername(info.getUsername());
+       user.setPic(info.getImg());
+       user.setAbout(info.getAbout());
 
-    // }
+       return userRepository.save(user);
+
+    }
 }

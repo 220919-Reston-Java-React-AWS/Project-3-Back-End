@@ -13,18 +13,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.annotations.Authorized;
 import com.revature.dtos.UpdateProfile;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("/profile")
-@CrossOrigin(origins = {"*"}, allowCredentials = "true")
+// @CrossOrigin(origins = {"*"}, allowCredentials = "true")
 public class ProfileController {
 
     @Autowired
     private UserService us;
     
+    @Authorized
     @GetMapping
     public ResponseEntity<User> getProfileInfo(HttpSession session) {
 
@@ -34,9 +36,15 @@ public class ProfileController {
         return ResponseEntity.ok(optional.get());
     }
 
-    // @PatchMapping("/update")
-    // public ResponseEntity<User> updateProfile(@RequestBody UpdateProfile info, HttpSession session) {
-    //     User user = (User) session.getAttribute("user");
+    @Authorized
+    @PatchMapping("/update")
+    public ResponseEntity<User> updateProfile(@RequestBody UpdateProfile info, HttpSession session) {
+        User user = (User) session.getAttribute("user");
 
-    // }
+        User newUser = us.updateProfileInfo(user, info);
+
+        session.setAttribute("user", newUser);
+
+        return ResponseEntity.ok(newUser);
+    }
 }
