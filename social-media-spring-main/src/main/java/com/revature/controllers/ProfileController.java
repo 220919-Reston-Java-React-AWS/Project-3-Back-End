@@ -8,17 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.annotations.Authorized;
+import com.revature.dtos.UpdateProfile;
 import com.revature.models.User;
-import com.revature.repositories.UserRepository;
 import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("/profile")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
+@CrossOrigin(origins = {"*"}, allowCredentials = "true")
 public class ProfileController {
 
     @Autowired
@@ -32,4 +33,10 @@ public class ProfileController {
 
         return ResponseEntity.ok(optional.get());
     }
+
+    // @PatchMapping("/update")
+    // public ResponseEntity<User> updateProfile(@RequestBody UpdateProfile info, HttpSession session) {
+    //     User user = (User) session.getAttribute("user");
+
+    // }
 }
