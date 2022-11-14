@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = {"*"}, allowCredentials = "true")
+// @CrossOrigin(originPatterns = "*", allowCredentials = "true")
 public class AuthController {
 
     private final AuthService authService;
