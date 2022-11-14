@@ -15,7 +15,7 @@ public class SocialMediaApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOriginPatterns("*").allowCredentials(true);
+				registry.addMapping("/**").allowedOriginPatterns("*").allowCredentials(true).allowedMethods("OPTIONS", "PUT", "POST", "PATCH", "DELETE", "GET");
 			}
 		};
 	}
