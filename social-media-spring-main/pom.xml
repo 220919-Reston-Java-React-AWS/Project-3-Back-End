@@ -53,9 +53,15 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+<<<<<<< HEAD
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.12</version>
+=======
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>2.21.0</version>
+>>>>>>> 6f561b087d9f61a6ed5cd7ca234c9faea42f9922
 		</dependency>
 	</dependencies>
 

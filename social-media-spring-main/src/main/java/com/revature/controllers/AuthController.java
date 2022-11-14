@@ -13,7 +13,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
+<<<<<<< HEAD
 // @CrossOrigin(originPatterns = "*", allowCredentials = "true")
+=======
+@CrossOrigin(origins = {"*"}, allowCredentials = "true")
+>>>>>>> 6f561b087d9f61a6ed5cd7ca234c9faea42f9922
 public class AuthController {
 
     private final AuthService authService;
@@ -48,7 +52,8 @@ public class AuthController {
                 registerRequest.getEmail(),
                 registerRequest.getPassword(),
                 registerRequest.getFirstName(),
-                registerRequest.getLastName());
+                registerRequest.getLastName(),
+                "Pick a cool username!", "upload a profile picture!", "Write about yourself!");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(created));
     }
