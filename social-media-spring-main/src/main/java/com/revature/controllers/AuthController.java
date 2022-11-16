@@ -48,7 +48,8 @@ public class AuthController {
                 registerRequest.getEmail(),
                 registerRequest.getPassword(),
                 registerRequest.getFirstName(),
-                registerRequest.getLastName());
+                registerRequest.getLastName(),
+                "Pick a cool username!", "upload a profile picture!", "Write about yourself!");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(created));
     }
