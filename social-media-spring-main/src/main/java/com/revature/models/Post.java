@@ -30,7 +30,7 @@ public class Post {
 	private String imageUrl;
 	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Comment> comments;
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.DETACH)
 	private List<User> likes;
 	@ManyToOne
 	private User author;
