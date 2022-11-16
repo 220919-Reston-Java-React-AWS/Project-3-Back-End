@@ -28,9 +28,9 @@ public class Post {
 	private int id;
 	private String text;
 	private String imageUrl;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Comment> comments;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<User> likes;
 	@ManyToOne
 	private User author;

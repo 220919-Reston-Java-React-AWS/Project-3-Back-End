@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import com.revature.models.Comment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +48,4 @@ public class PostController {
     @DeleteMapping("/delete-post")
     public Optional<Post> deletePost(@RequestBody Post post) {
         return this.postService.deletePost(post);}
-
 }
