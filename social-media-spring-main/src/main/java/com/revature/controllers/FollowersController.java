@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
-import com.revature.dtos.UserIdFollow;
 import com.revature.models.User;
+import com.revature.models.UserIdFollow;
 import com.revature.services.FollowersService;
 import com.revature.services.UserService;
 
@@ -40,7 +40,8 @@ public class FollowersController {
     public ResponseEntity<List<User>> newFollow(HttpSession session, @RequestBody UserIdFollow userId) {
 
         User user = (User) session.getAttribute("user");
-        return ResponseEntity.ok(fs.newFollow(user, userId));
+        int id = userId.getId();
+        return ResponseEntity.ok(fs.newFollow(user, id));
     }
     
 }

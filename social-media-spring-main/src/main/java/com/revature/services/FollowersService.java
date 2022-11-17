@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.dtos.UserIdFollow;
 import com.revature.models.Followers;
 import com.revature.models.User;
 import com.revature.repositories.FollowersRepository;
@@ -21,9 +20,9 @@ public class FollowersService {
     @Autowired
     private UserRepository ur;
 
-    public List<User> newFollow(User user, UserIdFollow userId) {
+    public List<User> newFollow(User user, int userId) {
 
-        Optional<User> toFollow = ur.findById(userId.getId());
+        Optional<User> toFollow = ur.findById(userId);
         Followers following = fr.findByUser(user);
 
         if (!following.getFollowing().contains(toFollow.get())) {
