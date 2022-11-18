@@ -1,12 +1,7 @@
 package com.revature.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +18,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String text;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     private User commenter;
+    @ManyToOne (cascade = CascadeType.ALL)
+    private Post post;
 }

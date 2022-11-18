@@ -1,4 +1,4 @@
-server:
+#server:
   # ssl:
   #   enabled: true
   #   key-alias: project3-https
@@ -6,7 +6,7 @@ server:
   #   key-store-type: JKS
   #   key-password: password
   #   key-store-password: password
-  port: 8080
+#  port: 8080
   # ssl:
   #   enabled: false
   # servlet:
@@ -15,19 +15,42 @@ server:
   #       same-site: none
   #       secure: true
 
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    defer-datasource-initialization: true
+#    show-sql: true
+#  datasource:
+#    url: jdbc:h2:mem:memdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password: password
+#  h2:
+#    console.enabled: true
+#springdoc:
+#  swagger-ui:
+#    path: /swagger
+
 spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/postgres?currentSchema=project2
+    username: postgres
+    password: pruWxlmNpO135078_Rew
+    driverClassName: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
-  datasource:
-    url: jdbc:h2:mem:memdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-  h2:
-    console.enabled: true
+      # ddl-auto will configure the initialization step of Hibernate
+      # Mostly, it will tell hibernate if you want to re-create the database, or just update database, or do nothing
+      ddl-auto: create # create-drop, create, validate, and update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8080
 springdoc:
   swagger-ui:
     path: /swagger

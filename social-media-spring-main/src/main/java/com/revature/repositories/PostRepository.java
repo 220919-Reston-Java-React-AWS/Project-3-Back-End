@@ -8,5 +8,5 @@ import com.revature.models.Post;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Integer>{
-    
+
 }

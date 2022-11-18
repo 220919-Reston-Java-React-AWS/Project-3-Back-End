@@ -28,7 +28,7 @@ public class Post {
 	private int id;
 	private String text;
 	private String imageUrl;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<User> likes;

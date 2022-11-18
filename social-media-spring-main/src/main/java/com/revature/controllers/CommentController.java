@@ -25,6 +25,12 @@ public class CommentController {
     }
 
     @Authorized
+    @PutMapping
+    public Comment addComment(Comment comment) {
+        return commentService.addComment(comment);
+    }
+
+    @Authorized
     @DeleteMapping("/delete-comment")
     public Optional<Comment> deleteComment(@RequestBody Comment comment, Post post) {
         return this.commentService.deleteComment(comment, post);}

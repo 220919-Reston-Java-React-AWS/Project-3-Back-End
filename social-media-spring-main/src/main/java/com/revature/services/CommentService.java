@@ -22,6 +22,10 @@ public class CommentService {
     public List<Comment> getAll() {
         return this.commentRepository.findAll();
     }
+
+    public Comment addComment(Comment comment){
+        return this.commentRepository.save(comment);
+    }
     public Optional<Comment> deleteComment(Comment comment, Post post) {
         List<Comment> comments = post.getComments();
 
