@@ -9,5 +9,5 @@ import com.revature.models.User;
 
 public interface FollowersRepository extends JpaRepository<Followers, Integer> {
     Followers findByUser(User user);
-    
+    Boolean existsByUser(User user);
 }

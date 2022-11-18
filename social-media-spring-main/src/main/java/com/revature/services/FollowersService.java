@@ -1,9 +1,10 @@
 package com.revature.services;
 
-import java.util.List;
+import java.util.*;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Followers;
@@ -23,16 +24,28 @@ public class FollowersService {
     public List<User> newFollow(User user, int userId) {
 
         Optional<User> toFollow = ur.findById(userId);
-        Followers following = fr.findByUser(user);
 
-        if (!following.getFollowing().contains(toFollow.get())) {
-            following.getFollowing().add(toFollow.get());
+        if (!fr.existsByUser(user)) {
+            Followers follow = new Followers();
+            List<User> following = new ArrayList<>();
+
+            follow.setUser(user);
+
+            following.add(toFollow.get());
+            follow.setFollowing(following);
+
+            return fr.save(follow).getFollowing();
         } else {
-            following.getFollowing().remove(toFollow.get());
-        }
+            Followers followingBank = fr.findByUser(user);
 
-        fr.save(following);
-        return following.getFollowing();
+            if (!followingBank.getFollowing().contains(toFollow.get())) {
+                followingBank.getFollowing().add(toFollow.get());
+            } else {
+                followingBank.getFollowing().remove(toFollow.get());
+            }
+
+            return fr.save(followingBank).getFollowing();
+        }
     }
-    
+
 }

@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
+import com.revature.models.Followers;
 import com.revature.models.User;
 import com.revature.models.UserIdFollow;
 import com.revature.services.FollowersService;
@@ -36,11 +38,12 @@ public class FollowersController {
     }
 
     @Authorized
-    @PostMapping("/follow")
-    public ResponseEntity<List<User>> newFollow(HttpSession session, @RequestBody UserIdFollow userId) {
+    @PutMapping("/follow")
+    public ResponseEntity<List<User>> newFollow(@RequestBody UserIdFollow userId, HttpSession session) {
 
         User user = (User) session.getAttribute("user");
-        int id = userId.getId();
+        int id = userId.getUserId();
+        
         return ResponseEntity.ok(fs.newFollow(user, id));
     }
     
