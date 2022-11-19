@@ -25,10 +25,7 @@ public class CommentController {
 
     @Authorized
     @PutMapping
-    public Comment addComment(@RequestBody Comment comment) {
-        System.out.println("---------------------comment------------------");
-        System.out.println(comment);
-        System.out.println("---------------------comment------------------");
+    public Comment addComment(Comment comment) {
         return commentService.addComment(comment);
     }
 
