@@ -25,7 +25,7 @@ public class CommentController {
 
     @Authorized
     @PutMapping
-    public Comment addComment(Comment comment) {
+    public Comment addComment(@RequestBody Comment comment) {
         return commentService.addComment(comment);
     }
 

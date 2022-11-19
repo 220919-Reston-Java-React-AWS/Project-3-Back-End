@@ -19,6 +19,8 @@ public class CommentService {
     }
 
     public Comment addComment(Comment comment) {
+        System.out.println("id:-------------" + comment.getText()
+                + "----------------------------------------------------------------");
         return commentRepository.save(comment);
     }
 
