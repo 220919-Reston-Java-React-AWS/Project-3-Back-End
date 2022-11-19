@@ -1,10 +1,8 @@
 package com.revature.services;
 
+import com.revature.exceptions.NoSuchRecordException;
 import com.revature.models.Comment;
-import com.revature.models.Post;
-import com.revature.models.User;
 import com.revature.repositories.CommentRepository;
-import com.revature.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,24 +14,24 @@ public class CommentService {
     @Autowired
     public CommentRepository commentRepository;
 
-    @Autowired
-    public PostRepository postRepository;
-
     public List<Comment> getAll() {
         return this.commentRepository.findAll();
     }
-    public Optional<Comment> deleteComment(Comment comment, Post post) {
-        List<Comment> comments = post.getComments();
 
-        comments.remove(comment);
+    public Comment addComment(Comment comment) {
+        return commentRepository.save(comment);
+    }
 
-        this.postRepository.save(post);
-
-
+    public Comment deleteComment(Comment comment) throws NoSuchRecordException {
         Optional<Comment> deletedComment = this.commentRepository.findById(comment.getId());
-
-        this.commentRepository.delete(comment);
-
-        return deletedComment;
+        if (!deletedComment.isEmpty()) {
+            Comment deleted = deletedComment.get();
+            System.out.println("id:-------------" + comment.getId()
+                    + "----------------------------------------------------------------");
+            this.commentRepository.deleteById(comment.getId());
+            return deleted;
+        } else {
+            throw new NoSuchRecordException("Comment not found");
+        }
     }
 }
