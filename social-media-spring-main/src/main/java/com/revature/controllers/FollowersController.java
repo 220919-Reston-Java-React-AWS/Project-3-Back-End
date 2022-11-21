@@ -39,7 +39,7 @@ public class FollowersController {
 
     // @Authorized
     // @PutMapping("/follow")
-    // public ResponseEntity<List<User>> newFollow(@RequestBody UserIdFollow userId, HttpSession session) {
+    // public ResponseEntity<List<User>> newFollow(@RequestBody UserToFollow userId, HttpSession session) {
 
     //     User user = (User) session.getAttribute("user");
     //     int id = userId.getUserId();
