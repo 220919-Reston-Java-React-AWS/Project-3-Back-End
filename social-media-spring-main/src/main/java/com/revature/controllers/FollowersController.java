@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
+import com.revature.dtos.UserToFollow;
 import com.revature.models.Followers;
 import com.revature.models.User;
-import com.revature.models.UserIdFollow;
 import com.revature.services.FollowersService;
 import com.revature.services.UserService;
 
@@ -50,11 +50,10 @@ public class FollowersController {
     // To test with swagger if response body is correct
     @Authorized
     @PutMapping("/follow")
-    public ResponseEntity<UserIdFollow> newFollow(@RequestBody UserIdFollow userId, HttpSession session) {
-
-        User user = (User) session.getAttribute("user");
-        int id = userId.getUserId();
-
+    public ResponseEntity<UserToFollow> newFollow (HttpSession session, @RequestBody UserToFollow userId) {
+        int id = 1
+        
+        System.out.println(userId);
         return ResponseEntity.ok(userId);
     }
     
