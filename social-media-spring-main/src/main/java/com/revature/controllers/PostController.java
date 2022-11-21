@@ -30,6 +30,13 @@ public class PostController {
         return ResponseEntity.ok(this.postService.getAll());
     }
 
+    // @Authorized
+    // @GetMapping
+    // public ResponseEntity<List<Post>> getAllPosts(HttpSession session) {
+    //     User user = (User) session.getAttribute("user");
+    //     return ResponseEntity.ok(this.postService.getAll(user));
+    // }
+
     @Authorized
     @PutMapping
     public ResponseEntity<Post> upsertPost(@RequestBody Post post) {
