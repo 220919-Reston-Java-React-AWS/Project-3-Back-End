@@ -51,8 +51,6 @@ public class FollowersController {
     @Authorized
     @PutMapping("/follow")
     public ResponseEntity<UserToFollow> newFollow (HttpSession session, @RequestBody UserToFollow userId) {
-        int id = 1
-        
         System.out.println(userId);
         return ResponseEntity.ok(userId);
     }
