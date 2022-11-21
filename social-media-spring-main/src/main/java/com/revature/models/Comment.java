@@ -30,7 +30,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String text;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private User commenter;
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinTable(name = "post_comment", joinColumns = @JoinColumn(name = "comment_id", referencedColumnName = "id", nullable = true), inverseJoinColumns = @JoinColumn(name = "post_id", referencedColumnName = "postId", nullable = true))
