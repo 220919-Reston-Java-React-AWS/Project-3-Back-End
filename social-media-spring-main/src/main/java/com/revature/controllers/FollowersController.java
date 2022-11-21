@@ -48,6 +48,7 @@ public class FollowersController {
     // }
 
     // To test with swagger if response body is correct
+    //new comment
     @Authorized
     @PutMapping("/follow")
     public ResponseEntity<UserToFollow> newFollow (HttpSession session, @RequestBody UserToFollow userId) {
