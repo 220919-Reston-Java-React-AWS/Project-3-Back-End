@@ -3,6 +3,8 @@ package com.revature.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,29 +28,39 @@ public class PostService {
 	@Autowired
 	private FollowersRepository fr;
 
-	public List<Post> getAll() {
-		return this.postRepository.findAll();
-	}
-
-	// public List<Post> getAll(User user) {
-	// 	if (fr.existsByUser(user)) {
-	// 	Followers followTable = fr.findByUser(user);
-	// 	List<User> following = followTable.getFollowing();
-	// 	for (iterable_type iterable_element : iterable) {
-			
-	// 	}
-
-	// 	return posts;
-	// 	} else {
-	// 		Followers follow = new Followers();
-    //         List<User> following = new ArrayList<>();
-
-    //         follow.setUser(user);
-	// 		follow.setFollowing(following);
-	// 		return ur.findByUser(following.get(1));
-	// 	}
-		
+	// public List<Post> getAll() {
+	// 	return this.postRepository.findAll();
 	// }
+
+	// to only see posts of people you follow
+	public List<Post> getAll(User user) {
+
+		List<Post> posts = new ArrayList<>();
+
+		if (fr.existsByUser(user)) {
+		Followers followTable = fr.findByUser(user);
+		List<User> following = followTable.getFollowing();
+
+
+		for (User users : following) {
+			this.postRepository.findAllByAuthor(users).stream().sequential().collect(Collectors.toCollection(()-> posts));
+		}
+		return posts;
+
+		} else {
+			Followers follow = new Followers();
+            List<User> following = new ArrayList<>();
+
+            follow.setUser(user);
+			follow.setFollowing(following);
+			
+			for (User users : following) {
+				this.postRepository.findAllByAuthor(users).stream().sequential().collect(Collectors.toCollection(()-> posts));
+			}
+			return posts;
+		}
+		
+	}
 
 	public Post upsert(Post post) {
 		return this.postRepository.save(post);
