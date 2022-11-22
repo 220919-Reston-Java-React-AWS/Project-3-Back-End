@@ -46,7 +46,7 @@ INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO posts (id, text, image_url, author_id) VALUES (
+INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     10000,
     'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',

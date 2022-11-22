@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Table(name = "users")
 public class User {
