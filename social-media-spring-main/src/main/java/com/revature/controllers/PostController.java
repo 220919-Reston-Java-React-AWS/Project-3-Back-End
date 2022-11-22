@@ -24,7 +24,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @Authorized
+    // @Authorized //no need to be logged in to see posts
     @GetMapping
     public ResponseEntity<List<Post>> getAllPosts() {
         return ResponseEntity.ok(this.postService.getAll());
