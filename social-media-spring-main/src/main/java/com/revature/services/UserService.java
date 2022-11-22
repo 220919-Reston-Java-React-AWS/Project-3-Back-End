@@ -30,11 +30,11 @@ public class UserService {
     }
 
     public User updateProfileInfo(User user, UpdateProfile info) {
-       user.setUsername(info.getUsername());
-       user.setPic(info.getImg());
-       user.setAbout(info.getAbout());
+        user.setUsername(info.getUsername());
+        user.setPic(info.getImg());
+        user.setAbout(info.getAbout());
 
-       return userRepository.save(user);
+        return userRepository.save(user);
 
     }
 

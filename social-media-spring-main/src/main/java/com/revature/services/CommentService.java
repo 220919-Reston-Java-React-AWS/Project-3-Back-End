@@ -28,8 +28,6 @@ public class CommentService {
         Optional<Comment> deletedComment = this.commentRepository.findById(comment.getId());
         if (!deletedComment.isEmpty()) {
             Comment deleted = deletedComment.get();
-            System.out.println("id:-------------" + comment.getId()
-                    + "----------------------------------------------------------------");
             this.commentRepository.deleteById(comment.getId());
             return deleted;
         } else {
