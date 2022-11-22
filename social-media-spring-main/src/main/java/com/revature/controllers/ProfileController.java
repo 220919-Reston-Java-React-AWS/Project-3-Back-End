@@ -24,7 +24,7 @@ public class ProfileController {
 
     @Autowired
     private UserService us;
-    
+
     @Authorized
     @GetMapping
     public ResponseEntity<User> getProfileInfo(HttpSession session) {

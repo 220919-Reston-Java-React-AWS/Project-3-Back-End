@@ -9,4 +9,14 @@ class SocialMediaApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+
+	@Test
+	void testConfigure() {
+
+	}
+
+	@Test
+	void testMain() {
+
+	}
 }

@@ -53,6 +53,6 @@ public class PostController {
     @Authorized
     @DeleteMapping("/delete-post")
     public Optional<Post> deletePost(@RequestBody Post post) {
-        return this.postService.deletePost(post);}
-
+        return this.postService.deletePost(post);
+    }
 }

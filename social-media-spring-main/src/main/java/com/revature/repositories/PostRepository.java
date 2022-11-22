@@ -10,4 +10,5 @@ import com.revature.models.User;
 
 public interface PostRepository extends JpaRepository<Post, Integer>{
     List<Post> findAllByAuthor(User user);
+
 }

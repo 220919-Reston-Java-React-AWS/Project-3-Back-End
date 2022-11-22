@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Followers;
@@ -67,7 +68,7 @@ public class PostService {
 	}
 
 	public Optional<Post> deletePost(Post post) {
-		Optional<Post> deletedPost = this.postRepository.findById(post.getId());
+		Optional<Post> deletedPost = this.postRepository.findById(post.getPostId());
 
 		this.postRepository.delete(post);
 
@@ -86,4 +87,5 @@ public class PostService {
 		this.postRepository.save(post);
 		return post;
 	}
+
 }
