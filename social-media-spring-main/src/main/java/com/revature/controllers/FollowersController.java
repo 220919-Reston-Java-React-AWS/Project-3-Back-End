@@ -55,5 +55,4 @@ public class FollowersController {
     //     System.out.println(userId);
     //     return ResponseEntity.ok(userId);
     // }
-    
 }
