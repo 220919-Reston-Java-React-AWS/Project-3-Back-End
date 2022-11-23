@@ -37,23 +37,22 @@ public class FollowersController {
         return ResponseEntity.ok(us.getAllUsers());
     }
 
-    // @Authorized
-    // @PutMapping("/follow")
-    // public ResponseEntity<List<User>> newFollow(@RequestBody UserToFollow userId, HttpSession session) {
+    @Authorized
+    @PutMapping("/follow")
+    public ResponseEntity<List<User>> newFollow(@RequestBody UserToFollow userId, HttpSession session) {
 
-    //     User user = (User) session.getAttribute("user");
-    //     int id = userId.getUserId();
+        User user = (User) session.getAttribute("user");
+        int id = userId.getUserId();
 
-    //     return ResponseEntity.ok(fs.newFollow(user, id));
-    // }
+        return ResponseEntity.ok(fs.newFollow(user, id));
+    }
 
     // To test with swagger if response body is correct
     //new comment
-    @Authorized
-    @PutMapping("/follow")
-    public ResponseEntity<UserToFollow> newFollow (HttpSession session, @RequestBody UserToFollow userId) {
-        System.out.println(userId);
-        return ResponseEntity.ok(userId);
-    }
-    
+    // @Authorized
+    // @PutMapping("/follow")
+    // public ResponseEntity<UserToFollow> newFollow (HttpSession session, @RequestBody UserToFollow userId) {
+    //     System.out.println(userId);
+    //     return ResponseEntity.ok(userId);
+    // }
 }
