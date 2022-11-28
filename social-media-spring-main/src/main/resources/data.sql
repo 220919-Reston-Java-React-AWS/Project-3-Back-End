@@ -1,5 +1,4 @@
-INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
-    '1',
+INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'testuser@gmail.com',
     'password',
     'Test',
@@ -7,8 +6,7 @@ INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
-    '2',
+INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'testuser1@gmail.com',
     'password',
     'Test1',
@@ -16,8 +14,7 @@ INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
-    '3',
+INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'testuser2@gmail.com',
     'password',
     'Test2',
@@ -25,8 +22,7 @@ INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
-    '4',
+INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'testuser3@gmail.com',
     'password',
     'Test3',
@@ -34,8 +30,7 @@ INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
-    '5',
+INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'testuser4@gmail.com',
     'password',
     'Test4',
@@ -43,8 +38,7 @@ INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
-    '6',
+INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'testuser5@gmail.com',
     'password',
     'Test5',

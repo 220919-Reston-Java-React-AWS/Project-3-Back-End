@@ -64,13 +64,15 @@ public class CommentServiceTest {
 
         int commentId = 1;
 
-        willDoNothing().given(commentRepository).deleteById(commentId);
+        when(commentRepository.findById(Mockito.eq(1))).thenReturn(Optional.ofNullable(comment));
+
+        willDoNothing().given(commentRepository).deleteById(comment.getId());
 
 
         commentService.deleteComment(comment);
 
 
-        verify(commentRepository, times(1)).deleteById(commentId);
+        verify(commentRepository, times(1)).deleteById(comment.getId());
     }
 
 //    @Test
