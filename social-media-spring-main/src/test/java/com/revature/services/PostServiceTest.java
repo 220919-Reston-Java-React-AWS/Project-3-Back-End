@@ -15,7 +15,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
@@ -30,7 +32,6 @@ public class PostServiceTest {
     private PostService postService;
     private Post post;
     private User user;
-    private Comment comment;
 
     @BeforeEach
     public void setUp(){
@@ -80,7 +81,6 @@ public class PostServiceTest {
 
     @Test
     void PostService_GetAll_ReturnAllPosts() {
-        // given - precondition or setup
 
         Post post1 = Post.builder()
                 .postId(1)
@@ -88,14 +88,14 @@ public class PostServiceTest {
                 .author(user)
                 .build();
 
+        List<Post> listPost = new ArrayList<>();
 
+        when(postRepository.findAllByAuthor(Mockito.eq(user))).thenReturn(listPost);
 
         given(postRepository.findAll()).willReturn(List.of(post, post1));
 
-        // when -  action or the behaviour that we are going test
         List<Post> postList = postService.getAll(user);
 
-        // then - verify the output
         Assertions.assertThat(postList).isNotNull();
         Assertions.assertThat(postList.size()).isEqualTo(2);
     }
