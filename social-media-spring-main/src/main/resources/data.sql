@@ -1,4 +1,5 @@
-INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
+INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
+    '1',
     'testuser@gmail.com',
     'password',
     'Test',
@@ -6,7 +7,8 @@ INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
+INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
+    '2',
     'testuser1@gmail.com',
     'password',
     'Test1',
@@ -14,7 +16,8 @@ INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
+INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
+    '3',
     'testuser2@gmail.com',
     'password',
     'Test2',
@@ -22,7 +25,8 @@ INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
+INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
+    '4',
     'testuser3@gmail.com',
     'password',
     'Test3',
@@ -30,7 +34,8 @@ INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
+INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
+    '5',
     'testuser4@gmail.com',
     'password',
     'Test4',
@@ -38,7 +43,8 @@ INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
     'https://archives.bulbagarden.net/media/upload/thumb/f/fa/445Garchomp.png/375px-445Garchomp.png'
 );
 
-INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
+INSERT INTO users (id, email, password, first_name, last_name, pic) VALUES (
+    '6',
     'testuser5@gmail.com',
     'password',
     'Test5',
@@ -73,7 +79,7 @@ INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     2
 ); 
 
-INSERT INTO posts (id, text, image_url, author_id) VALUES (
+INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     10004,
     'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
@@ -86,7 +92,7 @@ INSERT INTO posts (id, text, image_url, author_id) VALUES (
     3
 ); 
 
-INSERT INTO posts (id, text, image_url, author_id) VALUES (
+INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     10006,
     'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
@@ -98,7 +104,7 @@ INSERT INTO posts (id, text, image_url, author_id) VALUES (
     '',
     4
 ); 
-INSERT INTO posts (id, text, image_url, author_id) VALUES (
+INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     10008,
     'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
@@ -110,7 +116,7 @@ INSERT INTO posts (id, text, image_url, author_id) VALUES (
     '',
     5
 ); 
-INSERT INTO posts (id, text, image_url, author_id) VALUES (
+INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     10010,
     'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
