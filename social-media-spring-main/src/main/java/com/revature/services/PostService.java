@@ -42,18 +42,21 @@ public class PostService {
 		Followers followTable = fr.findByUser(user);
 		List<User> following = followTable.getFollowing();
 
+		if (!following.contains(user)) {
+			following.add(user);
+		}
 
 		for (User users : following) {
 			this.postRepository.findAllByAuthor(users).stream().sequential().collect(Collectors.toCollection(()-> posts));
 		}
 		return posts;
-
 		} else {
 			Followers follow = new Followers();
             List<User> following = new ArrayList<>();
 
             follow.setUser(user);
 			follow.setFollowing(following);
+			following.add(user);
 			
 			for (User users : following) {
 				this.postRepository.findAllByAuthor(users).stream().sequential().collect(Collectors.toCollection(()-> posts));
