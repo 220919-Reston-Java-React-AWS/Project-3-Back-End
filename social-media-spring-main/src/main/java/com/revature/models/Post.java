@@ -20,9 +20,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "posts")
 public class Post {
 
