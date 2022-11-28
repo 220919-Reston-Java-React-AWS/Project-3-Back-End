@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
+import com.revature.dtos.UpdateProfile;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 
@@ -53,5 +53,25 @@ public class UserServiceTest {
     @Test
     void testUpdateProfileInfo() {
 
+        //Arrange or Given
+        User user = User.builder()
+        .email("test@test.com")
+        .password("password").build();
+
+        UpdateProfile info = new UpdateProfile();
+        info.setAbout("test");
+        info.setImg("img");
+        info.setUsername("test");
+
+        User expected = User.builder()
+        .email("test@test.com")
+        .password("password").about("test").pic("img").username("test").build();
+
+        //Act or When
+        when(userService.updateProfileInfo(user, info)).thenReturn(expected);
+        User actual = userService.updateProfileInfo(user, info);
+
+        //Assert or Then
+        Assertions.assertThat(actual.toString()).isEqualTo(expected.toString());
     }
 }
