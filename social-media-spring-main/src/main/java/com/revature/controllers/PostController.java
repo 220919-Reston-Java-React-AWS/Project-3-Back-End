@@ -25,9 +25,11 @@ public class PostController {
     }
 
     // @Authorized //no need to be logged in to see posts
+
     @GetMapping
-    public ResponseEntity<List<Post>> getAllPosts() {
-        return ResponseEntity.ok(this.postService.getAll());
+    public ResponseEntity<List<Post>> getAllPosts(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return ResponseEntity.ok(this.postService.getAll(user));
     }
 
     @Authorized
