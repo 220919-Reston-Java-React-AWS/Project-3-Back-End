@@ -5,6 +5,7 @@ import com.revature.models.Comment;
 import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.repositories.PostRepository;
+import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
+import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
 
@@ -29,7 +33,19 @@ public class PostServiceTest {
     private Comment comment;
 
     @BeforeEach
-    public void setup(){
+    public void setUp(){
+        user = User.builder()
+            .id(1)
+            .email("testemail@gmail.com")
+            .password("password")
+            .firstName("John")
+            .lastName("Doe")
+            .username("JD")
+            .build();
+    }
+
+    @BeforeEach
+    public void setup() {
 
         post = Post.builder()
                 .postId(1)
@@ -60,5 +76,27 @@ public class PostServiceTest {
 
 
         verify(postRepository, times(1)).delete(post);
+    }
+
+    @Test
+    void PostService_GetAll_ReturnAllPosts() {
+        // given - precondition or setup
+
+        Post post1 = Post.builder()
+                .postId(1)
+                .text("Test String")
+                .author(user)
+                .build();
+
+
+
+        given(postRepository.findAll()).willReturn(List.of(post, post1));
+
+        // when -  action or the behaviour that we are going test
+        List<Post> postList = postService.getAll(user);
+
+        // then - verify the output
+        Assertions.assertThat(postList).isNotNull();
+        Assertions.assertThat(postList.size()).isEqualTo(2);
     }
 }

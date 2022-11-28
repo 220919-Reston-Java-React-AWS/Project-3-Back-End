@@ -40,7 +40,7 @@ public class CommentServiceTest {
     private Comment comment;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
 
         comment = Comment.builder()
                 .id(1)
@@ -49,6 +49,7 @@ public class CommentServiceTest {
                 .post(myPost)
                 .build();
     }
+
     @Test
     public void CommentService_AddComment_ReturnAddedComment() {
 
@@ -75,27 +76,24 @@ public class CommentServiceTest {
         verify(commentRepository, times(1)).deleteById(comment.getId());
     }
 
-//    @Test
-//    void CommentService_GetAll_ReturnAllComments() {
-//
-//        Comment comment = Comment.builder()
-//                .text("Test String")
-//                .commenter(commenter)
-//                .post(myPost)
-//                .build();
-//
-//        List<Comment> mockList = new ArrayList<>();
-//        Comment mockUser1 = Mockito.mock(Comment.class);
-//        Comment mockUser2 = Mockito.mock(Comment.class);
-//
-//        mockList.add(mockUser1);
-//        mockList.add(mockUser2);
-//
-//        when(commentRepository.findAll(Mockito.any(comment))).thenReturn(mockList);
-//
-//        //Assert
-//        Assertions.assertThat(comment).isNotNull();
-//        Assertions.assertThat(comment.getId()).isEqualTo(2);
-//
-//    }
+    @Test
+    void CommentService_GetAll_ReturnAllComments() {
+        // given - precondition or setup
+
+        Comment comment1 = Comment.builder()
+                .id(1)
+                .text("Test String1")
+                .commenter(commenter)
+                .post(myPost)
+                .build();
+
+        given(commentRepository.findAll()).willReturn(List.of(comment, comment1));
+
+        // when -  action or the behaviour that we are going test
+        List<Comment> commentList = commentService.getAll();
+
+        // then - verify the output
+        Assertions.assertThat(commentList).isNotNull();
+        Assertions.assertThat(commentList.size()).isEqualTo(2);
+    }
 }
