@@ -33,8 +33,9 @@ public class FollowersController {
 
     @Authorized
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(us.getAllUsers());
+    public ResponseEntity<List<User>> getAllUsers(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return ResponseEntity.ok(us.getAllUsers(user));
     }
 
     @Authorized

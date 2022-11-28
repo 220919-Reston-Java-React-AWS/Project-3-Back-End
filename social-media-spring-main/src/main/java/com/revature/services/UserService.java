@@ -38,7 +38,9 @@ public class UserService {
 
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<User> getAllUsers(User user) {
+        List <User> users = userRepository.findAll();
+        users.remove(user);
+        return users;
     }
 }
