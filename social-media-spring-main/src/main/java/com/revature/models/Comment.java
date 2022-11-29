@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "comments")
 public class Comment {
 
@@ -33,4 +35,5 @@ public class Comment {
     @JoinTable(name = "post_comment", joinColumns = @JoinColumn(name = "comment_id", referencedColumnName = "id", nullable = true), inverseJoinColumns = @JoinColumn(name = "post_id", referencedColumnName = "postId", nullable = true))
     @JsonIgnoreProperties("comments")
     private Post post;
+
 }

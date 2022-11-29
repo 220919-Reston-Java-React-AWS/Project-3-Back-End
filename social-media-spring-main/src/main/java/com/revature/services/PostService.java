@@ -67,6 +67,8 @@ public class PostService {
 	}
 
 	public Post upsert(Post post) {
+		System.out.println("id:-------------" + post.getText()
+				+ "----------------------------------------------------------------");
 		return this.postRepository.save(post);
 	}
 
