@@ -28,8 +28,21 @@ public class UserServiceTest {
     private UserService userService;
 
     @Test
-    void testFindByCredentials() {
+    void testFindByCredentialsCorrect() {
+        User user = User.builder().email("test@test.com").password("test").build();
 
+        when(userRepo.findByEmailAndPassword(user.getEmail(), user.getPassword())).thenReturn(Optional.of(user));
+
+        Assertions.assertThat(userService.findByCredentials(user.getEmail(), user.getPassword())).isEqualTo(Optional.of(user));
+    }
+
+    @Test
+    void testFindByCredentialsDoesNotExist() {
+        User user = User.builder().email("test@test.com").password("test").build();
+
+        when(userRepo.findByEmailAndPassword(user.getEmail(), user.getPassword())).thenReturn(Optional.ofNullable(null));
+
+        Assertions.assertThat(userService.findByCredentials(user.getEmail(), user.getPassword())).isEqualTo(Optional.ofNullable(null));
     }
 
     @Test
