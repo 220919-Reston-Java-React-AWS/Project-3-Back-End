@@ -17,6 +17,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ExtendWith(MockitoExtension.class)
 public class PostServiceTest {
 
@@ -29,7 +32,7 @@ public class PostServiceTest {
     private Comment comment;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
 
         post = Post.builder()
                 .postId(1)
@@ -55,10 +58,57 @@ public class PostServiceTest {
 
         willDoNothing().given(postRepository).delete(post);
 
-
         postService.deletePost(post);
 
-
         verify(postRepository, times(1)).delete(post);
+    }
+
+    @Test
+    void PostService_AddLike() {
+        User user = User.builder()
+                .id(1)
+                .email("test@test.com")
+                .password("password").build();
+
+        List<User> likes = new ArrayList<>();
+
+        post = Post.builder()
+                .postId(1)
+                .text("Test String")
+                .author(user)
+                .likes(likes)
+                .build();
+
+        when(postRepository.save(post)).thenReturn(post);
+
+        Post savedPost = postService.addOrRemoveLike(post, user);
+
+        Assertions.assertThat(savedPost).isNotNull();
+        Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(1);
+    }
+
+    @Test
+    void PostService_RemoveLike() {
+        User user = User.builder()
+                .id(1)
+                .email("test@test.com")
+                .password("password").build();
+
+        List<User> likes = new ArrayList<>();
+        likes.add(user);
+
+        post = Post.builder()
+                .postId(1)
+                .text("Test String")
+                .author(user)
+                .likes(likes)
+                .build();
+
+        when(postRepository.save(post)).thenReturn(post);
+
+        Post savedPost = postService.addOrRemoveLike(post, user);
+
+        Assertions.assertThat(savedPost).isNotNull();
+        Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(0);
     }
 }

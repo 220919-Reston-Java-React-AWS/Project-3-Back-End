@@ -2,8 +2,6 @@ package com.revature.services;
 
 import static org.mockito.Mockito.when;
 
-import java.util.Optional;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +11,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.revature.models.User;
-import com.revature.repositories.UserRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
