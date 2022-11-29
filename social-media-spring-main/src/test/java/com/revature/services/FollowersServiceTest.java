@@ -56,7 +56,7 @@ public class FollowersServiceTest {
     }
 
     @Test
-    void testNewFollowWithFollowing() {
+    void testNewFollowWithEmptyFollowing() {
         //Arrange or Given
         User user = new User();
         user.setId(1);
@@ -65,13 +65,14 @@ public class FollowersServiceTest {
 
         Followers follow = new Followers();
         List<User> expected = new ArrayList<>();
-        expected.add(toFollow);
         follow.setUser(user);
         follow.setFollowing(expected);
 
 
          //Act or When
          when(ur.findById(toFollow.getId())).thenReturn(Optional.of(toFollow));
+         when(fr.existsByUser(user)).thenReturn(true);
+         when(fr.findByUser(user)).thenReturn(follow);
          when(fr.save(follow)).thenReturn(follow);
         List<User> actual = fs.newFollow(user, toFollow.getId());
 
