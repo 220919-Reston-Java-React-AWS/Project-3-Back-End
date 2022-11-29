@@ -59,19 +59,19 @@ INSERT INTO users (email, password, first_name, last_name, pic) VALUES (
 --     1
 -- ); 
 
-INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
+-- INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
 
-    10002,
-    'The classic',
-    'https://i.imgur.com/fhgzVEt.jpeg',
-    2
-),
-(
-    10003,
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    '',
-    2
-); 
+--     10002,
+--     'The classic',
+--     'https://i.imgur.com/fhgzVEt.jpeg',
+--     2
+-- ),
+-- (
+--     10003,
+--     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+--     '',
+--     2
+-- ); 
 
 INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     10004,
@@ -86,7 +86,7 @@ INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     3
 ); 
 
-INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
+INSERT INTO posts (id, text, image_url, author_id) VALUES (
     10006,
     'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
@@ -98,7 +98,7 @@ INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     '',
     4
 ); 
-INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
+INSERT INTO posts (id, text, image_url, author_id) VALUES (
     10008,
     'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
@@ -110,7 +110,7 @@ INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
     '',
     5
 ); 
-INSERT INTO posts (post_id, text, image_url, author_id) VALUES (
+INSERT INTO posts (id, text, image_url, author_id) VALUES (
     10010,
     'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
