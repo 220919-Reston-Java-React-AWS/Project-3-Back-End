@@ -75,27 +75,26 @@ public class CommentServiceTest {
         verify(commentRepository, times(1)).deleteById(comment.getId());
     }
 
-//    @Test
-//    void CommentService_GetAll_ReturnAllComments() {
-//
-//        Comment comment = Comment.builder()
-//                .text("Test String")
-//                .commenter(commenter)
-//                .post(myPost)
-//                .build();
-//
-//        List<Comment> mockList = new ArrayList<>();
-//        Comment mockUser1 = Mockito.mock(Comment.class);
-//        Comment mockUser2 = Mockito.mock(Comment.class);
-//
-//        mockList.add(mockUser1);
-//        mockList.add(mockUser2);
-//
-//        when(commentRepository.findAll(Mockito.any(comment))).thenReturn(mockList);
-//
-//        //Assert
-//        Assertions.assertThat(comment).isNotNull();
-//        Assertions.assertThat(comment.getId()).isEqualTo(2);
-//
-//    }
+   @Test
+   void CommentService_GetAll_ReturnAllComments() {
+
+       Comment comment = Comment.builder()
+               .text("Test String")
+               .commenter(commenter)
+               .post(myPost)
+               .build();
+
+       List<Comment> mockList = new ArrayList<>();
+       Comment mockUser1 = Mockito.mock(Comment.class);
+       Comment mockUser2 = Mockito.mock(Comment.class);
+
+       mockList.add(mockUser1);
+       mockList.add(mockUser2);
+
+       when(commentRepository.findAll()).thenReturn(mockList);
+
+       //Assert
+       Assertions.assertThat(commentService.getAll()).hasSize(2);
+
+   }
 }
