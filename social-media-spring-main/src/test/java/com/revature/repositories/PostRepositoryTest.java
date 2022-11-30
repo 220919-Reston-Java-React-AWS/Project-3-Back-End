@@ -35,23 +35,23 @@ public class PostRepositoryTest {
         Assertions.assertThat(savedPost.getPostId()).isGreaterThan(0);
     }
 
-    // @Test
-    // public void PostRepository_GetAll_ReturnsSavedMoreThanOnePost() {
+    @Test
+    public void PostRepository_GetAll_ReturnsSavedMoreThanOnePost() {
 
-    //     User user = User.builder().email("test@test.com").password("password").build();
-    //     Post post = Post.builder().text("text").author(user).build();
-    //     Post post2 = Post.builder().text("text2").author(user).build();
+        User user = User.builder().email("test@test.com").password("password").build();
+        Post post = Post.builder().text("text").author(user).build();
+        Post post2 = Post.builder().text("text2").author(user).build();
 
-    //     userRepo.save(user);
+        userRepo.save(user);
 
-    //     postRepo.save(post);
-    //     postRepo.save(post2);
+        postRepo.save(post);
+        postRepo.save(post2);
 
-    //     List<Post> postList = postRepo.findAll();
+        List<Post> postList = postRepo.findAll();
 
-    //     Assertions.assertThat(postList).isNotNull();
-    //     Assertions.assertThat(postList.size()).isEqualTo(4);
-    // }
+        Assertions.assertThat(postList).isNotNull();
+        Assertions.assertThat(postList.size()).isEqualTo(2);
+    }
 
     @Test
     public void PostRepository_FindById_ReturnsSavedPost() {
