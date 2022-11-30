@@ -133,4 +133,9 @@ public class PostServiceTest {
         Assertions.assertThat(savedPost).isNotNull();
         Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(0);
     }
+
+    @Test
+    void testGetAllPosts() {
+        
+    }
 }

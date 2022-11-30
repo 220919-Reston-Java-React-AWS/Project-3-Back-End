@@ -106,4 +106,66 @@ public class FollowersServiceTest {
          Assertions.assertThat(actual).isEmpty();
     }
 
+    @Test
+    void testAllFollowingWithFollowing() {
+        User user = new User();
+        user.setId(1);
+        User user1 = new User();
+        user1.setId(2);
+        User user2 = new User();
+        user2.setId(3);
+        User user3 = new User();
+        user3.setId(4);
+
+        Followers follow = new Followers();
+        List<User> expected = new ArrayList<>();
+        expected.add(user1);
+        expected.add(user2);
+        expected.add(user3);
+        follow.setUser(user);
+        follow.setFollowing(expected);
+
+        when(fr.existsByUser(user)).thenReturn(true);
+        when(fr.findByUser(user)).thenReturn(follow);
+
+        Assertions.assertThat(fs.allFollowing(user)).isEqualTo(expected);
+
+    }
+
+    @Test
+    void testAllFollowers() {
+        User user = new User();
+        user.setId(1);
+        User user1 = new User();
+        user1.setId(2);
+        User user2 = new User();
+        user2.setId(3);
+        User user3 = new User();
+        user3.setId(4);
+
+        Followers follow1 = new Followers();
+        Followers follow2 = new Followers();
+        Followers follow3 = new Followers();
+        List<User> f1 = new ArrayList<>();
+        List<User> f2 = new ArrayList<>();
+        List<User> f3 = new ArrayList<>();
+        f1.add(user);
+        follow1.setUser(user1);
+        follow1.setFollowing(f1);
+        f2.add(user);
+        follow2.setUser(user2);
+        follow2.setFollowing(f2);
+        f3.add(user);
+        follow3.setUser(user3);
+        follow3.setFollowing(f3);
+
+        List<Followers> allF = new ArrayList<>();
+        allF.add(follow1);
+        allF.add(follow2);
+        allF.add(follow3);
+
+        when(fr.findAll()).thenReturn(allF);
+
+        Assertions.assertThat(fs.allFollowers(user)).hasSize(3);
+    }
 }
