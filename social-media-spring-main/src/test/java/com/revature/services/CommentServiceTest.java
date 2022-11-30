@@ -40,7 +40,7 @@ public class CommentServiceTest {
     private Comment comment;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
 
         comment = Comment.builder()
                 .id(1)
@@ -49,6 +49,7 @@ public class CommentServiceTest {
                 .post(myPost)
                 .build();
     }
+
     @Test
     public void CommentService_AddComment_ReturnAddedComment() {
 
@@ -75,6 +76,7 @@ public class CommentServiceTest {
         verify(commentRepository, times(1)).deleteById(comment.getId());
     }
 
+
    @Test
    void CommentService_GetAll_ReturnAllComments() {
 
@@ -98,3 +100,4 @@ public class CommentServiceTest {
 
    }
 }
+

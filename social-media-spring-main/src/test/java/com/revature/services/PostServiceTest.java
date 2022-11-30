@@ -14,6 +14,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
 
@@ -29,7 +34,6 @@ public class PostServiceTest {
     private PostService postService;
     private Post post;
     private User user;
-    private Comment comment;
 
     @BeforeEach
     public void setup() {
@@ -61,6 +65,28 @@ public class PostServiceTest {
         postService.deletePost(post);
 
         verify(postRepository, times(1)).delete(post);
+    }
+
+    @Test
+    void PostService_GetAll_ReturnAllPosts() {
+
+        Post post = Post.builder()
+                .postId(1)
+                .text("Test String")
+                .author(user)
+                .build();
+
+        List<Post> listPost = new ArrayList<>();
+
+        Post mockUser1 = Mockito.mock(Post.class);
+        Post mockUser2 = Mockito.mock(Post.class);
+
+        listPost.add(mockUser1);
+        listPost.add(mockUser2);
+
+//        when(postRepository.findAll()).thenReturn(listPost);
+
+        Assertions.assertThat(listPost.size()).isEqualTo(2);
     }
 
     @Test
@@ -112,8 +138,4 @@ public class PostServiceTest {
         Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(0);
     }
 
-    @Test
-    void testGetAllPosts() {
-        
-    }
 }
