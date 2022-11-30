@@ -21,6 +21,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ExtendWith(MockitoExtension.class)
 public class PostServiceTest {
 
@@ -31,18 +34,6 @@ public class PostServiceTest {
     private Post post;
     private User user;
     private Comment comment;
-
-    @BeforeEach
-    public void setUp(){
-        user = User.builder()
-            .id(1)
-            .email("testemail@gmail.com")
-            .password("password")
-            .firstName("John")
-            .lastName("Doe")
-            .username("JD")
-            .build();
-    }
 
     @BeforeEach
     public void setup() {
@@ -71,9 +62,7 @@ public class PostServiceTest {
 
         willDoNothing().given(postRepository).delete(post);
 
-
         postService.deletePost(post);
-
 
         verify(postRepository, times(1)).delete(post);
     }
@@ -93,10 +82,3 @@ public class PostServiceTest {
         given(postRepository.findAll()).willReturn(List.of(post, post1));
 
         // when -  action or the behaviour that we are going test
-        List<Post> postList = postService.getAll(user);
-
-        // then - verify the output
-        Assertions.assertThat(postList).isNotNull();
-        Assertions.assertThat(postList.size()).isEqualTo(2);
-    }
-}
