@@ -75,7 +75,9 @@ public class PostServiceTest {
 
     @Test
     void PostService_GetAll_ReturnAllPosts() {
+        User user1 = User.builder().build();
 
+<<<<<<< HEAD
         Post post = Post.builder()
                 .postId(2)
                 .text("Test String")
@@ -99,6 +101,21 @@ public class PostServiceTest {
         when(postRepository.findAll()).thenReturn(mockList);
 
         Assertions.assertThat(postService.getAll(user)).hasSize(2);
+=======
+        post.setAuthor(user);
+        List<Post> posts = new ArrayList<>();
+        posts.add(post);
+        
+        Followers ft = new Followers();
+        List<User> following = new ArrayList<>();
+        following.add(user);
+        ft.setFollowing(following);
+
+        when(fr.existsByUser(user1)).thenReturn(false);
+        when(postRepository.findAllByAuthor(user1)).thenReturn(posts);
+
+        Assertions.assertThat(postService.getAll(user1)).hasSize(1);
+>>>>>>> 8e6ec954ff5d4473bd3dbefce474a007b14656de
     }
 
     @Test

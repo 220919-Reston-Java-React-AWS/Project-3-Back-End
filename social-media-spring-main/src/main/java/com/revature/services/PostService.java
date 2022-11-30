@@ -20,11 +20,12 @@ import com.revature.repositories.UserRepository;
 @Service
 public class PostService {
 
+	@Autowired
 	private PostRepository postRepository;
 
-	public PostService(PostRepository postRepository) {
-		this.postRepository = postRepository;
-	}
+	// public PostService(PostRepository postRepository) {
+	// 	this.postRepository = postRepository;
+	// }
 
 	@Autowired
 	private FollowersRepository fr;
