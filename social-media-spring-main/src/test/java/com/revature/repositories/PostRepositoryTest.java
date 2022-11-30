@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -50,7 +51,7 @@ public class PostRepositoryTest {
         List<Post> postList = postRepo.findAll();
 
         Assertions.assertThat(postList).isNotNull();
-        Assertions.assertThat(postList.size()).isEqualTo(2);
+        Assertions.assertThat(postList.size()).isEqualTo(14);
     }
 
     @Test

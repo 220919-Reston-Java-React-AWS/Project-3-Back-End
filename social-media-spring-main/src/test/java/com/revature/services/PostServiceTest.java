@@ -2,8 +2,10 @@ package com.revature.services;
 
 import com.revature.exceptions.NoSuchRecordException;
 import com.revature.models.Comment;
+import com.revature.models.Followers;
 import com.revature.models.Post;
 import com.revature.models.User;
+import com.revature.repositories.FollowersRepository;
 import com.revature.repositories.PostRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,10 +32,14 @@ public class PostServiceTest {
 
     @Mock
     private PostRepository postRepository;
+    @Mock
+    private FollowersRepository fr;
     @InjectMocks
     private PostService postService;
     private Post post;
     private User user;
+
+    private Followers follower;
 
     @BeforeEach
     public void setup() {
@@ -71,22 +77,28 @@ public class PostServiceTest {
     void PostService_GetAll_ReturnAllPosts() {
 
         Post post = Post.builder()
-                .postId(1)
+                .postId(2)
                 .text("Test String")
                 .author(user)
                 .build();
 
-        List<Post> listPost = new ArrayList<>();
+        User user1 = User.builder().build();
+
+        List<Post> mockList = new ArrayList<>();
 
         Post mockUser1 = Mockito.mock(Post.class);
         Post mockUser2 = Mockito.mock(Post.class);
 
-        listPost.add(mockUser1);
-        listPost.add(mockUser2);
+        mockList.add(mockUser1);
+        mockList.add(mockUser2);
 
-//        when(postRepository.findAll()).thenReturn(listPost);
+        when(fr.existsByUser(user1)).thenReturn(true);
 
-        Assertions.assertThat(listPost.size()).isEqualTo(2);
+        when(fr.findByUser(user1)).thenReturn(follower);
+
+        when(postRepository.findAll()).thenReturn(mockList);
+
+        Assertions.assertThat(postService.getAll(user)).hasSize(2);
     }
 
     @Test
