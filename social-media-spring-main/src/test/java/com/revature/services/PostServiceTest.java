@@ -30,26 +30,26 @@ import java.util.List;
 @ExtendWith(MockitoExtension.class)
 public class PostServiceTest {
 
-    @Mock
-    private PostRepository postRepository;
-    @Mock
-    private FollowersRepository fr;
-    @InjectMocks
-    private PostService postService;
-    private Post post;
-    private User user;
+        @Mock
+        private PostRepository postRepository;
+        @Mock
+        private FollowersRepository fr;
+        @InjectMocks
+        private PostService postService;
+        private Post post;
+        private User user;
 
-    private Followers follower;
+        private Followers follower;
 
-    @BeforeEach
-    public void setup() {
+        @BeforeEach
+        public void setup() {
 
-        post = Post.builder()
-                .postId(1)
-                .text("Test String")
-                .author(user)
-                .build();
-    }
+                post = Post.builder()
+                                .postId(1)
+                                .text("Test String")
+                                .author(user)
+                                .build();
+        }
 
     @Test
     public void PostService_UpsertPost_ReturnUpsertPost() {
@@ -61,51 +61,26 @@ public class PostServiceTest {
         Assertions.assertThat(savedPost).isNotNull();
     }
 
-    @Test
-    void PostService_DeletePost_ReturnDeletedPost() {
+        @Test
+        void PostService_DeletePost_ReturnDeletedPost() {
 
-        int postId = 1;
+                int postId = 1;
 
-        willDoNothing().given(postRepository).delete(post);
+                willDoNothing().given(postRepository).delete(post);
 
-        postService.deletePost(post);
+                postService.deletePost(post);
 
-        verify(postRepository, times(1)).delete(post);
-    }
+                verify(postRepository, times(1)).delete(post);
+        }
 
     @Test
     void PostService_GetAll_ReturnAllPosts() {
         User user1 = User.builder().build();
 
-<<<<<<< HEAD
-        Post post = Post.builder()
-                .postId(2)
-                .text("Test String")
-                .author(user)
-                .build();
-
-        User user1 = User.builder().build();
-
-        List<Post> mockList = new ArrayList<>();
-
-        Post mockUser1 = Mockito.mock(Post.class);
-        Post mockUser2 = Mockito.mock(Post.class);
-
-        mockList.add(mockUser1);
-        mockList.add(mockUser2);
-
-        when(fr.existsByUser(user1)).thenReturn(true);
-
-        when(fr.findByUser(user1)).thenReturn(follower);
-
-        when(postRepository.findAll()).thenReturn(mockList);
-
-        Assertions.assertThat(postService.getAll(user)).hasSize(2);
-=======
         post.setAuthor(user);
         List<Post> posts = new ArrayList<>();
         posts.add(post);
-        
+
         Followers ft = new Followers();
         List<User> following = new ArrayList<>();
         following.add(user);
@@ -115,56 +90,55 @@ public class PostServiceTest {
         when(postRepository.findAllByAuthor(user1)).thenReturn(posts);
 
         Assertions.assertThat(postService.getAll(user1)).hasSize(1);
->>>>>>> 8e6ec954ff5d4473bd3dbefce474a007b14656de
     }
 
-    @Test
-    void PostService_AddLike() {
-        User user = User.builder()
-                .id(1)
-                .email("test@test.com")
-                .password("password").build();
+        @Test
+        void PostService_AddLike() {
+                User user = User.builder()
+                                .id(1)
+                                .email("test@test.com")
+                                .password("password").build();
 
-        List<User> likes = new ArrayList<>();
+                List<User> likes = new ArrayList<>();
 
-        post = Post.builder()
-                .postId(1)
-                .text("Test String")
-                .author(user)
-                .likes(likes)
-                .build();
+                post = Post.builder()
+                                .postId(1)
+                                .text("Test String")
+                                .author(user)
+                                .likes(likes)
+                                .build();
 
-        when(postRepository.save(post)).thenReturn(post);
+                when(postRepository.save(post)).thenReturn(post);
 
-        Post savedPost = postService.addOrRemoveLike(post, user);
+                Post savedPost = postService.addOrRemoveLike(post, user);
 
-        Assertions.assertThat(savedPost).isNotNull();
-        Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(1);
-    }
+                Assertions.assertThat(savedPost).isNotNull();
+                Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(1);
+        }
 
-    @Test
-    void PostService_RemoveLike() {
-        User user = User.builder()
-                .id(1)
-                .email("test@test.com")
-                .password("password").build();
+        @Test
+        void PostService_RemoveLike() {
+                User user = User.builder()
+                                .id(1)
+                                .email("test@test.com")
+                                .password("password").build();
 
-        List<User> likes = new ArrayList<>();
-        likes.add(user);
+                List<User> likes = new ArrayList<>();
+                likes.add(user);
 
-        post = Post.builder()
-                .postId(1)
-                .text("Test String")
-                .author(user)
-                .likes(likes)
-                .build();
+                post = Post.builder()
+                                .postId(1)
+                                .text("Test String")
+                                .author(user)
+                                .likes(likes)
+                                .build();
 
-        when(postRepository.save(post)).thenReturn(post);
+                when(postRepository.save(post)).thenReturn(post);
 
-        Post savedPost = postService.addOrRemoveLike(post, user);
+                Post savedPost = postService.addOrRemoveLike(post, user);
 
-        Assertions.assertThat(savedPost).isNotNull();
-        Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(0);
-    }
+                Assertions.assertThat(savedPost).isNotNull();
+                Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(0);
+        }
 
 }
