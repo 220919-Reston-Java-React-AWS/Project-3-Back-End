@@ -48,4 +48,30 @@ public class FollowersService {
         }
     }
 
+    public List<User> allFollowing(User user) {
+        if(!fr.existsByUser(user)) {
+            Followers follow = new Followers();
+            List<User> following = new ArrayList<>();
+
+            follow.setUser(user);
+            follow.setFollowing(following);
+
+            return following;
+        } else {
+            return fr.findByUser(user).getFollowing();
+        }
+    }
+
+    public List<User> allFollowers(User user) {
+       List<Followers> allUsers = fr.findAll();
+       List<User> followers = new ArrayList<>();
+
+       for (Followers f : allUsers) {
+        if(f.getFollowing().contains(user)) {
+            followers.add(f.getUser());
+        }
+       }
+       return followers;
+    }    
+
 }
