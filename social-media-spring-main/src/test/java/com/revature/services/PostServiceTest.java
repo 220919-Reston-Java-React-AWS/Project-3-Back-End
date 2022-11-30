@@ -5,7 +5,6 @@ import com.revature.models.Comment;
 import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.repositories.PostRepository;
-import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,8 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
@@ -69,16 +66,71 @@ public class PostServiceTest {
 
     @Test
     void PostService_GetAll_ReturnAllPosts() {
-        // given - precondition or setup
 
-        Post post1 = Post.builder()
+        Post post = Post.builder()
                 .postId(1)
                 .text("Test String")
                 .author(user)
                 .build();
 
+        List<Post> listPost = new ArrayList<>();
+        Post mockUser1 = Mockito.mock(Post.class);
+        Post mockUser2 = Mockito.mock(Post.class);
 
+        listPost.add(mockUser1);
+        listPost.add(mockUser2);
 
-        given(postRepository.findAll()).willReturn(List.of(post, post1));
+//        when(postRepository.findAll()).thenReturn(listPost);
 
-        // when -  action or the behaviour that we are going test
+        Assertions.assertThat(listPost.size()).isEqualTo(2);
+    }
+
+    @Test
+    void PostService_AddLike() {
+        User user = User.builder()
+                .id(1)
+                .email("test@test.com")
+                .password("password").build();
+
+        List<User> likes = new ArrayList<>();
+
+        post = Post.builder()
+                .postId(1)
+                .text("Test String")
+                .author(user)
+                .likes(likes)
+                .build();
+
+        when(postRepository.save(post)).thenReturn(post);
+
+        Post savedPost = postService.addOrRemoveLike(post, user);
+
+        Assertions.assertThat(savedPost).isNotNull();
+        Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(1);
+    }
+
+    @Test
+    void PostService_RemoveLike() {
+        User user = User.builder()
+                .id(1)
+                .email("test@test.com")
+                .password("password").build();
+
+        List<User> likes = new ArrayList<>();
+        likes.add(user);
+
+        post = Post.builder()
+                .postId(1)
+                .text("Test String")
+                .author(user)
+                .likes(likes)
+                .build();
+
+        when(postRepository.save(post)).thenReturn(post);
+
+        Post savedPost = postService.addOrRemoveLike(post, user);
+
+        Assertions.assertThat(savedPost).isNotNull();
+        Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(0);
+    }
+}
