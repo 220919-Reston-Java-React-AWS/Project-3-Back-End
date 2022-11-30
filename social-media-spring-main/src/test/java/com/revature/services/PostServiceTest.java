@@ -77,27 +77,16 @@ public class PostServiceTest {
                 .build();
 
         List<Post> listPost = new ArrayList<>();
-<<<<<<< HEAD
 
-        when(postRepository.findAllByAuthor(Mockito.eq(user))).thenReturn(listPost);
-=======
         Post mockUser1 = Mockito.mock(Post.class);
         Post mockUser2 = Mockito.mock(Post.class);
 
         listPost.add(mockUser1);
         listPost.add(mockUser2);
->>>>>>> main
 
 //        when(postRepository.findAll()).thenReturn(listPost);
 
-<<<<<<< HEAD
-        List<Post> postList = postService.getAll(user);
-
-        Assertions.assertThat(postList).isNotNull();
-        Assertions.assertThat(postList.size()).isEqualTo(2);
-=======
         Assertions.assertThat(listPost.size()).isEqualTo(2);
->>>>>>> main
     }
 
     @Test
