@@ -5,7 +5,6 @@ import com.revature.models.Comment;
 import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.repositories.PostRepository;
-import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +22,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ExtendWith(MockitoExtension.class)
 public class PostServiceTest {
 
@@ -32,18 +34,6 @@ public class PostServiceTest {
     private PostService postService;
     private Post post;
     private User user;
-
-    @BeforeEach
-    public void setUp(){
-        user = User.builder()
-            .id(1)
-            .email("testemail@gmail.com")
-            .password("password")
-            .firstName("John")
-            .lastName("Doe")
-            .username("JD")
-            .build();
-    }
 
     @BeforeEach
     public void setup() {
@@ -72,9 +62,7 @@ public class PostServiceTest {
 
         willDoNothing().given(postRepository).delete(post);
 
-
         postService.deletePost(post);
-
 
         verify(postRepository, times(1)).delete(post);
     }
@@ -82,21 +70,83 @@ public class PostServiceTest {
     @Test
     void PostService_GetAll_ReturnAllPosts() {
 
-        Post post1 = Post.builder()
+        Post post = Post.builder()
                 .postId(1)
                 .text("Test String")
                 .author(user)
                 .build();
 
         List<Post> listPost = new ArrayList<>();
+<<<<<<< HEAD
 
         when(postRepository.findAllByAuthor(Mockito.eq(user))).thenReturn(listPost);
+=======
+        Post mockUser1 = Mockito.mock(Post.class);
+        Post mockUser2 = Mockito.mock(Post.class);
 
-        given(postRepository.findAll()).willReturn(List.of(post, post1));
+        listPost.add(mockUser1);
+        listPost.add(mockUser2);
+>>>>>>> main
 
+//        when(postRepository.findAll()).thenReturn(listPost);
+
+<<<<<<< HEAD
         List<Post> postList = postService.getAll(user);
 
         Assertions.assertThat(postList).isNotNull();
         Assertions.assertThat(postList.size()).isEqualTo(2);
+=======
+        Assertions.assertThat(listPost.size()).isEqualTo(2);
+>>>>>>> main
     }
+
+    @Test
+    void PostService_AddLike() {
+        User user = User.builder()
+                .id(1)
+                .email("test@test.com")
+                .password("password").build();
+
+        List<User> likes = new ArrayList<>();
+
+        post = Post.builder()
+                .postId(1)
+                .text("Test String")
+                .author(user)
+                .likes(likes)
+                .build();
+
+        when(postRepository.save(post)).thenReturn(post);
+
+        Post savedPost = postService.addOrRemoveLike(post, user);
+
+        Assertions.assertThat(savedPost).isNotNull();
+        Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(1);
+    }
+
+    @Test
+    void PostService_RemoveLike() {
+        User user = User.builder()
+                .id(1)
+                .email("test@test.com")
+                .password("password").build();
+
+        List<User> likes = new ArrayList<>();
+        likes.add(user);
+
+        post = Post.builder()
+                .postId(1)
+                .text("Test String")
+                .author(user)
+                .likes(likes)
+                .build();
+
+        when(postRepository.save(post)).thenReturn(post);
+
+        Post savedPost = postService.addOrRemoveLike(post, user);
+
+        Assertions.assertThat(savedPost).isNotNull();
+        Assertions.assertThat(savedPost.getLikes().size()).isEqualTo(0);
+    }
+
 }
