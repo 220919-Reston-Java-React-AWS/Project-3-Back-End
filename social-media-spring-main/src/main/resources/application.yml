@@ -38,7 +38,7 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: jdbc:postgresql://revatureproject3.c8u1gmouokdn.us-east-1.rds.amazonaws.com/postgres
