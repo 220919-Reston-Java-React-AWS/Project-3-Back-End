@@ -50,7 +50,7 @@ public class PostRepositoryTest {
         List<Post> postList = postRepo.findAll();
 
         Assertions.assertThat(postList).isNotNull();
-        Assertions.assertThat(postList.size()).isEqualTo(14);
+        Assertions.assertThat(postList.size()).isEqualTo(2);
     }
 
     @Test
