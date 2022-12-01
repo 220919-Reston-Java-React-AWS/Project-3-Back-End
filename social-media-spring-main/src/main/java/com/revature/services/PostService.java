@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +14,6 @@ import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.repositories.FollowersRepository;
 import com.revature.repositories.PostRepository;
-import com.revature.repositories.UserRepository;
 
 @Service
 public class PostService {
@@ -24,14 +22,14 @@ public class PostService {
 	private PostRepository postRepository;
 
 	// public PostService(PostRepository postRepository) {
-	// 	this.postRepository = postRepository;
+	// this.postRepository = postRepository;
 	// }
 
 	@Autowired
 	private FollowersRepository fr;
 
 	// public List<Post> getAll() {
-	// 	return this.postRepository.findAll();
+	// return this.postRepository.findAll();
 	// }
 
 	// to only see posts of people you follow
@@ -40,31 +38,33 @@ public class PostService {
 		List<Post> posts = new ArrayList<>();
 
 		if (fr.existsByUser(user)) {
-		Followers followTable = fr.findByUser(user);
-		List<User> following = followTable.getFollowing();
+			Followers followTable = fr.findByUser(user);
+			List<User> following = followTable.getFollowing();
 
-		if (!following.contains(user)) {
-			following.add(user);
-		}
+			if (!following.contains(user)) {
+				following.add(user);
+			}
 
-		for (User users : following) {
-			this.postRepository.findAllByAuthor(users).stream().sequential().collect(Collectors.toCollection(()-> posts));
-		}
-		return posts;
+			for (User users : following) {
+				this.postRepository.findAllByAuthor(users).stream().sequential()
+						.collect(Collectors.toCollection(() -> posts));
+			}
+			return posts;
 		} else {
 			Followers follow = new Followers();
-            List<User> following = new ArrayList<>();
+			List<User> following = new ArrayList<>();
 
-            follow.setUser(user);
+			follow.setUser(user);
 			follow.setFollowing(following);
 			following.add(user);
-			
+
 			for (User users : following) {
-				this.postRepository.findAllByAuthor(users).stream().sequential().collect(Collectors.toCollection(()-> posts));
+				this.postRepository.findAllByAuthor(users).stream().sequential()
+						.collect(Collectors.toCollection(() -> posts));
 			}
 			return posts;
 		}
-		
+
 	}
 
 	public Post upsert(Post post) {

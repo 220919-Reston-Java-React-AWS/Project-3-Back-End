@@ -14,13 +14,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
-import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
 
@@ -35,7 +32,6 @@ public class CommentServiceTest {
     private Post myPost;
 
     private User commenter;
-
 
     private Comment comment;
 
@@ -63,8 +59,6 @@ public class CommentServiceTest {
     @Test
     void CommentService_DeleteComment_ReturnDeletedComment() throws NoSuchRecordException {
 
-        int commentId = 1;
-
         when(commentRepository.findById(Mockito.eq(1))).thenReturn(Optional.ofNullable(comment));
 
         willDoNothing().given(commentRepository).deleteById(comment.getId());
@@ -76,28 +70,20 @@ public class CommentServiceTest {
         verify(commentRepository, times(1)).deleteById(comment.getId());
     }
 
+    @Test
+    void CommentService_GetAll_ReturnAllComments() {
 
-   @Test
-   void CommentService_GetAll_ReturnAllComments() {
+        List<Comment> mockList = new ArrayList<>();
+        Comment mockUser1 = Mockito.mock(Comment.class);
+        Comment mockUser2 = Mockito.mock(Comment.class);
 
-       Comment comment = Comment.builder()
-               .text("Test String")
-               .commenter(commenter)
-               .post(myPost)
-               .build();
+        mockList.add(mockUser1);
+        mockList.add(mockUser2);
 
-       List<Comment> mockList = new ArrayList<>();
-       Comment mockUser1 = Mockito.mock(Comment.class);
-       Comment mockUser2 = Mockito.mock(Comment.class);
+        when(commentRepository.findAll()).thenReturn(mockList);
 
-       mockList.add(mockUser1);
-       mockList.add(mockUser2);
+        // Assert
+        Assertions.assertThat(commentService.getAll()).hasSize(2);
 
-       when(commentRepository.findAll()).thenReturn(mockList);
-
-       //Assert
-       Assertions.assertThat(commentService.getAll()).hasSize(2);
-
-   }
+    }
 }
-
