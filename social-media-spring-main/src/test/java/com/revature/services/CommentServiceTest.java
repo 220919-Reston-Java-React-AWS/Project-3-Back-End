@@ -5,6 +5,8 @@ import com.revature.models.Comment;
 import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.repositories.CommentRepository;
+import com.revature.repositories.PostRepository;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,9 @@ public class CommentServiceTest {
 
     @Mock
     private CommentRepository commentRepository;
+
+    @Mock 
+    private PostRepository pr;
     @InjectMocks
     private CommentService commentService;
 
@@ -74,16 +79,20 @@ public class CommentServiceTest {
     void CommentService_GetAll_ReturnAllComments() {
 
         List<Comment> mockList = new ArrayList<>();
+        Post post = new Post();
         Comment mockUser1 = Mockito.mock(Comment.class);
         Comment mockUser2 = Mockito.mock(Comment.class);
 
         mockList.add(mockUser1);
         mockList.add(mockUser2);
 
-        when(commentRepository.findAll()).thenReturn(mockList);
+        post.setPostId(1);
+        post.setComments(mockList);
+
+        when(pr.findById(post.getPostId())).thenReturn(Optional.of(post));
 
         // Assert
-        Assertions.assertThat(commentService.getAll(myPost)).hasSize(2);
+        Assertions.assertThat(commentService.getAll(post)).hasSize(2);
 
     }
 }
