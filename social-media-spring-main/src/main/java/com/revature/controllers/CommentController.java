@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.annotations.Authorized;
 import com.revature.exceptions.NoSuchRecordException;
 import com.revature.models.Comment;
+import com.revature.models.Post;
 import com.revature.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class CommentController {
 
     @Authorized
     @GetMapping
-    public ResponseEntity<List<Comment>> getAllComments() {
-        return ResponseEntity.ok(this.commentService.getAll());
+    public ResponseEntity<List<Comment>> getAllComments(Post post) {
+        return ResponseEntity.ok(this.commentService.getAll(post));
     }
 
     @Authorized
