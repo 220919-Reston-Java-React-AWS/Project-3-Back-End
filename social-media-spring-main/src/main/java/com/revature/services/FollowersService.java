@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Followers;
@@ -49,7 +48,7 @@ public class FollowersService {
     }
 
     public List<User> allFollowing(User user) {
-        if(!fr.existsByUser(user)) {
+        if (!fr.existsByUser(user)) {
             Followers follow = new Followers();
             List<User> following = new ArrayList<>();
 
@@ -63,15 +62,15 @@ public class FollowersService {
     }
 
     public List<User> allFollowers(User user) {
-       List<Followers> allUsers = fr.findAll();
-       List<User> followers = new ArrayList<>();
+        List<Followers> allUsers = fr.findAll();
+        List<User> followers = new ArrayList<>();
 
-       for (Followers f : allUsers) {
-        if(f.getFollowing().contains(user)) {
-            followers.add(f.getUser());
+        for (Followers f : allUsers) {
+            if (f.getFollowing().contains(user)) {
+                followers.add(f.getUser());
+            }
         }
-       }
-       return followers;
-    }    
+        return followers;
+    }
 
 }

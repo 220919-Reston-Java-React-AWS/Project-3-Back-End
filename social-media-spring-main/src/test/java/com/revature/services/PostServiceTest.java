@@ -1,7 +1,5 @@
 package com.revature.services;
 
-import com.revature.exceptions.NoSuchRecordException;
-import com.revature.models.Comment;
 import com.revature.models.Followers;
 import com.revature.models.Post;
 import com.revature.models.User;
@@ -18,14 +16,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 public class PostServiceTest {
@@ -62,8 +55,6 @@ public class PostServiceTest {
     @Test
     void PostService_DeletePost_ReturnDeletedPost() {
 
-        int postId = 1;
-
         willDoNothing().given(postRepository).delete(post);
 
         postService.deletePost(post);
@@ -78,7 +69,7 @@ public class PostServiceTest {
         post.setAuthor(user);
         List<Post> posts = new ArrayList<>();
         posts.add(post);
-        
+
         Followers ft = new Followers();
         List<User> following = new ArrayList<>();
         following.add(user);

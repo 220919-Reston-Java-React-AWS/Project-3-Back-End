@@ -39,8 +39,13 @@ public class UserService {
     }
 
     public List<User> getAllUsers(User user) {
-        List <User> users = userRepository.findAll();
+        List<User> users = userRepository.findAll();
         users.remove(user);
         return users;
+    }
+
+    public User getUser(User user) {
+        Optional<User> foundUser = userRepository.findById(user.getId());
+        return foundUser.get();
     }
 }
