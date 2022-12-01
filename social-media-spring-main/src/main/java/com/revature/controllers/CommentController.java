@@ -20,7 +20,7 @@ public class CommentController {
     public CommentService commentService;
 
     @Authorized
-    @GetMapping
+    @PostMapping
     public ResponseEntity<List<Comment>> getAllComments(@RequestBody Post post) {
         return ResponseEntity.ok(this.commentService.getAll(post));
     }
