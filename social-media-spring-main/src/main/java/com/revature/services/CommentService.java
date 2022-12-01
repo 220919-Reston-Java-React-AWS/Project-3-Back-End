@@ -28,6 +28,10 @@ public class CommentService {
         return post1.get().getComments();
     }
 
+    public List<Comment> getAll(Post post) {
+        return this.commentRepository.findAllByPost(post);
+    }
+
     public Comment addComment(Comment comment) {
         System.out.println("id:-------------" + comment.getText()
                 + "----------------------------------------------------------------");

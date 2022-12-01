@@ -32,6 +32,11 @@ public class PostController {
         return ResponseEntity.ok(this.postService.getAll(user));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Post>> getAllPosts() {
+        return ResponseEntity.ok(this.postService.getAll());
+    }
+
     @Authorized
     @PutMapping
     public ResponseEntity<Post> upsertPost(@RequestBody Post post) {

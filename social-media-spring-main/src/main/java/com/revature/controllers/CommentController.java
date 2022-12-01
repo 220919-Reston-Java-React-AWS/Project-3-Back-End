@@ -4,6 +4,7 @@ import com.revature.annotations.Authorized;
 import com.revature.exceptions.NoSuchRecordException;
 import com.revature.models.Comment;
 import com.revature.models.Post;
+import com.revature.models.Post;
 import com.revature.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

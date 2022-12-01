@@ -28,9 +28,9 @@ public class PostService {
 	@Autowired
 	private FollowersRepository fr;
 
-	// public List<Post> getAll() {
-	// return this.postRepository.findAll();
-	// }
+	public List<Post> getAll() {
+		return this.postRepository.findAll();
+	}
 
 	// to only see posts of people you follow
 	public List<Post> getAll(User user) {
@@ -64,7 +64,6 @@ public class PostService {
 			}
 			return posts;
 		}
-
 	}
 
 	public Post upsert(Post post) {
