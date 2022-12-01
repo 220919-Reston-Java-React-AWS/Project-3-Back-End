@@ -2,7 +2,9 @@ package com.revature.services;
 
 import com.revature.exceptions.NoSuchRecordException;
 import com.revature.models.Comment;
+import com.revature.models.Post;
 import com.revature.repositories.CommentRepository;
+import com.revature.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,16 @@ public class CommentService {
     @Autowired
     public CommentRepository commentRepository;
 
-    public List<Comment> getAll() {
-        return this.commentRepository.findAll();
+    @Autowired
+    public PostRepository postRepository;
+
+    public List<Comment> getAll(Post post) {
+
+
+
+        Optional<Post> post1 =this.postRepository.findById(post.getPostId());
+
+        return post1.get().getComments();
     }
 
     public Comment addComment(Comment comment) {

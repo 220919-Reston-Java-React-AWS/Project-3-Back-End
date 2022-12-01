@@ -83,7 +83,7 @@ public class CommentServiceTest {
         when(commentRepository.findAll()).thenReturn(mockList);
 
         // Assert
-        Assertions.assertThat(commentService.getAll()).hasSize(2);
+        Assertions.assertThat(commentService.getAll(myPost)).hasSize(2);
 
     }
 }

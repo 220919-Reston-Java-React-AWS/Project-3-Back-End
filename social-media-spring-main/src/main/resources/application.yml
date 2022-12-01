@@ -34,11 +34,11 @@
 #    path: /swagger
 
 spring:
-  # datasource:
-  #   url: jdbc:postgresql://127.0.0.1:5432/postgres?currentSchema=project2
-  #   username: postgres
-  #   password: pruWxlmNpO135078_Rew
-  #   driverClassName: org.postgresql.Driver
+#   datasource:
+#     url: jdbc:postgresql://javafs220919.cgo342vomw6l.us-east-2.rds.amazonaws.com/javafs220919
+#     username: postgres
+#     password: pruWxlmNpO135078_Rew
+#     driverClassName: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: create-drop
