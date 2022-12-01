@@ -7,6 +7,8 @@
 #   key-password: password
 #   key-store-password: password
 #  port: 8080
+
+
 # ssl:
 #   enabled: false
 # servlet:
