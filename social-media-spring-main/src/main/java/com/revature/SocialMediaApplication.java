@@ -16,7 +16,7 @@ public class SocialMediaApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:3000").allowCredentials(true).allowedMethods("OPTIONS", "PUT", "POST", "PATCH", "DELETE", "GET");
+				registry.addMapping("/**").allowedOrigins("http://p3-fe.s3-website-us-east-1.amazonaws.com/").allowCredentials(true).allowedMethods("OPTIONS", "PUT", "POST", "PATCH", "DELETE", "GET");
 			}
 		};
 	}
