@@ -7,8 +7,6 @@
 #   key-password: password
 #   key-store-password: password
 #  port: 8080
-
-
 # ssl:
 #   enabled: false
 # servlet:
@@ -16,7 +14,6 @@
 #     cookie:
 #       same-site: none
 #       secure: true
-
 #spring:
 #  jpa:
 #    hibernate:
@@ -38,26 +35,17 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: true
   datasource:
-    url: jdbc:postgresql://revatureproject3.c8u1gmouokdn.us-east-1.rds.amazonaws.com/postgres
-    username: postgres
-    password: postgres
-    driverClassName: org.postgresql.Driver
-  # jpa:
-  #   hibernate:
-  #     ddl-auto: create-drop
-    # database-platform: org.hibernate.dialect.H2Dialect
-    # defer-datasource-initialization: true
-    # show-sql: true
-  # datasource:
-  #   url: jdbc:h2:mem:memdb
-  #   driver-class-name: org.h2.Driver
-  #   username: sa
-  #   password: password
-  # h2:
-  #   console.enabled: true
+    url: jdbc:h2:mem:memdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console.enabled: true
 springdoc:
   swagger-ui:
     path: /swagger
