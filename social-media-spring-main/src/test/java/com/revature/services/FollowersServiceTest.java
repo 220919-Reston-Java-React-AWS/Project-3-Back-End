@@ -1,7 +1,5 @@
 package com.revature.services;
 
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class FollowersServiceTest {
     @Test
     void testNewFollowWithNoFollowing() {
 
-        //Arrange or Given
+        // Arrange or Given
         User user = new User();
         user.setId(1);
         User toFollow = new User();
@@ -46,18 +44,18 @@ public class FollowersServiceTest {
         follow.setUser(user);
         follow.setFollowing(expected);
 
-        //Act or When
+        // Act or When
         when(ur.findById(toFollow.getId())).thenReturn(Optional.of(toFollow));
         when(fr.save(follow)).thenReturn(follow);
         List<User> actual = fs.newFollow(user, toFollow.getId());
 
-        //Assert or Then
+        // Assert or Then
         Assertions.assertThat(expected).isEqualTo(actual);
     }
 
     @Test
     void testNewFollowWithEmptyFollowing() {
-        //Arrange or Given
+        // Arrange or Given
         User user = new User();
         user.setId(1);
         User toFollow = new User();
@@ -68,21 +66,20 @@ public class FollowersServiceTest {
         follow.setUser(user);
         follow.setFollowing(expected);
 
-
-         //Act or When
-         when(ur.findById(toFollow.getId())).thenReturn(Optional.of(toFollow));
-         when(fr.existsByUser(user)).thenReturn(true);
-         when(fr.findByUser(user)).thenReturn(follow);
-         when(fr.save(follow)).thenReturn(follow);
+        // Act or When
+        when(ur.findById(toFollow.getId())).thenReturn(Optional.of(toFollow));
+        when(fr.existsByUser(user)).thenReturn(true);
+        when(fr.findByUser(user)).thenReturn(follow);
+        when(fr.save(follow)).thenReturn(follow);
         List<User> actual = fs.newFollow(user, toFollow.getId());
 
-         //Assert or Then
-         Assertions.assertThat(actual).contains(toFollow);
+        // Assert or Then
+        Assertions.assertThat(actual).contains(toFollow);
     }
 
     @Test
     void testNewFollowUnfollow() {
-        //Arrange or Given
+        // Arrange or Given
         User user = new User();
         user.setId(1);
         User toFollow = new User();
@@ -94,16 +91,15 @@ public class FollowersServiceTest {
         follow.setUser(user);
         follow.setFollowing(expected);
 
+        // Act or When
+        when(ur.findById(toFollow.getId())).thenReturn(Optional.of(toFollow));
+        when(fr.existsByUser(user)).thenReturn(true);
+        when(fr.findByUser(user)).thenReturn(follow);
+        when(fr.save(follow)).thenReturn(follow);
+        List<User> actual = fs.newFollow(user, toFollow.getId());
 
-         //Act or When
-         when(ur.findById(toFollow.getId())).thenReturn(Optional.of(toFollow));
-         when(fr.existsByUser(user)).thenReturn(true);
-         when(fr.findByUser(user)).thenReturn(follow);
-         when(fr.save(follow)).thenReturn(follow);
-         List<User> actual = fs.newFollow(user, toFollow.getId());
-
-         //Assert or Then
-         Assertions.assertThat(actual).isEmpty();
+        // Assert or Then
+        Assertions.assertThat(actual).isEmpty();
     }
 
     @Test

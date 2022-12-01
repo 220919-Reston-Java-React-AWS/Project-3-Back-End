@@ -4,6 +4,9 @@ import com.revature.dtos.LoginRequest;
 import com.revature.dtos.RegisterRequest;
 import com.revature.models.User;
 import com.revature.services.AuthService;
+import com.revature.services.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +18,11 @@ import java.util.Optional;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final AuthService authService;
+    @Autowired
+    private UserService us;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+    @Autowired
+    private AuthService authService;
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
@@ -51,5 +54,12 @@ public class AuthController {
                 "Pick a cool username!", "upload a profile picture!", "Write about yourself!");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(created));
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<User> getUser(HttpSession session) {
+        User userToGet = (User) session.getAttribute("user");
+        User user = us.getUser(userToGet);
+        return ResponseEntity.ok().body(user);
     }
 }

@@ -1,6 +1,5 @@
 package com.revature.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,7 +31,7 @@ public class Post {
 	private String text;
 	private String imageUrl;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "post", fetch = FetchType.LAZY)
-	private List<Comment> comments = new ArrayList<>();
+	private List<Comment> comments;
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<User> likes;
 	@ManyToOne
