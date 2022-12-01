@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.revature.exceptions.EmailAlreadyExists;
 import com.revature.models.User;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,7 +33,7 @@ public class AuthServiceTest {
     }
 
     @Test
-    public void AuthService_Register_ReturnsUser() {
+    public void AuthService_Register_ReturnsUser() throws EmailAlreadyExists {
         User user = User.builder()
                 .email("test@test.com")
                 .password("password").build();

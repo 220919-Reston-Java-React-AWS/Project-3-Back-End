@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import com.revature.dtos.UpdateProfile;
+import com.revature.exceptions.EmailAlreadyExists;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,12 @@ public class UserService {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
-    public User save(User user) {
-        return userRepository.save(user);
+    public User save(User user) throws EmailAlreadyExists {
+        if(!userRepository.existsByEmail(user.getEmail())) {
+            return userRepository.save(user);
+        } else {
+            throw new EmailAlreadyExists("Email already exists");
+        }
     }
 
     public Optional<User> getProfileInfo(int user_id) {

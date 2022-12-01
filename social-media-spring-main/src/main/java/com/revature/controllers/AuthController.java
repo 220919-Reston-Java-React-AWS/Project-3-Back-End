@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import com.revature.dtos.LoginRequest;
 import com.revature.dtos.RegisterRequest;
+import com.revature.exceptions.EmailAlreadyExists;
 import com.revature.models.User;
 import com.revature.services.AuthService;
 import com.revature.services.UserService;
@@ -45,7 +46,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) throws EmailAlreadyExists {
         User created = new User(0,
                 registerRequest.getEmail(),
                 registerRequest.getPassword(),
@@ -53,7 +54,14 @@ public class AuthController {
                 registerRequest.getLastName(),
                 "Pick a cool username!", "upload a profile picture!", "Write about yourself!");
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(created));
+        try {
+            User user = authService.register(created);
+            return ResponseEntity.ok().body(user);
+        } catch (EmailAlreadyExists e) {
+            e.getMessage();
+            return ResponseEntity.badRequest().body(null);
+        }
+        
     }
 
     @PostMapping("/user")

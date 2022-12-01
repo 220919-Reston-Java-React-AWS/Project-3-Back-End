@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import com.revature.dtos.UpdateProfile;
+import com.revature.exceptions.EmailAlreadyExists;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 
@@ -100,7 +101,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testSave() {
+    void testSave() throws EmailAlreadyExists {
         User user = User.builder()
                 .email("test@test.com")
                 .password("password").build();
