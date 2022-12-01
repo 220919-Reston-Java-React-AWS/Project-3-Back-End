@@ -37,6 +37,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: jdbc:postgresql://revatureproject3.c8u1gmouokdn.us-east-1.rds.amazonaws.com/revatureproject3
     username: postgres
