@@ -106,7 +106,8 @@ public class UserServiceTest {
                 .email("test@test.com")
                 .password("password").build();
 
-        when(userService.save(Mockito.any(User.class))).thenReturn(user);
+        when(userRepo.existsByEmail(user.getEmail())).thenReturn(false);
+                when(userRepo.save(Mockito.any(User.class))).thenReturn(user);
 
         User savedUser = userService.save(user);
 
